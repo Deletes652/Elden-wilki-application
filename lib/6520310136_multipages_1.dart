@@ -487,6 +487,8 @@ class _ReviewsPageState extends State<ReviewsPage> {
     final store = AppScope.of(context);
     final c = store.byId(widget.characterId);
     final comments = store.commentsOf(widget.characterId);
+    final commentCount = comments.length; // นับจำนวนคอมเมนต์
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Reviews • ${c.name}'),
@@ -503,7 +505,7 @@ class _ReviewsPageState extends State<ReviewsPage> {
                 child: _SectionHeader(
                   icon: Icons.menu_book_outlined,
                   title: 'คอมเมนต์ทั้งหมด',
-                  subtitle: 'อ่าน/เพิ่มความเห็นเกี่ยวกับตัวละครนี้',
+                  subtitle: 'มีความคิดเห็น ${commentCount} รายการ',
                   animation: null,
                 ),
               ),
@@ -1345,6 +1347,7 @@ class AssetImagePlaceholder {
   ImageProvider get image => MemoryImage(_transparentPng1x1);
 }
 
+// 1x1 transparent PNG
 final Uint8List _transparentPng1x1 = Uint8List.fromList(const [
   0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D,
   0x49, 0x48, 0x44, 0x52, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
